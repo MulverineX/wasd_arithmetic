@@ -15,6 +15,16 @@
       ]
     }
   ],
+  "types": {
+    "developer": {
+      "symbol": "💻",
+      "description": "Original Developer, Made the original pack and the math implementation"
+    },
+    "cleaner": {
+      "symbol": "🧹",
+      "description": "Cleaned, namespaced, and added documented outputs."
+    }
+  },
   "contributorsPerLine": 7,
   "projectName": "mountedwasd",
   "projectOwner": "MulverineX",
