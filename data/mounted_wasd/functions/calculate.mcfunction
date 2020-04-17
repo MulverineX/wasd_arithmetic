@@ -23,7 +23,8 @@ scoreboard players operation @s mp_wasd.var2 = @s mp_wasd.pos_dx
 scoreboard players operation *var mp_wasd.var = @s mp_wasd.pos_dz
 function mounted_wasd:math/determinant
 
+tag @s[scores={mp_wasd.var2=1..}] add mp_wasd.forward
+tag @s[scores={mp_wasd.var2=..-1}] add mp_wasd.backward
+
 # Calculate head to motion angle
-tag @s[scores={var2=1..}] add mp_wasd.forward
-tag @s[scores={var2=..-1}] add mp_wasd.backward
 function mounted_wasd:math/atan2
