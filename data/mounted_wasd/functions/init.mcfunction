@@ -37,5 +37,3 @@ scoreboard players set *360000 mp_wasd.const 360000
 
 
 tellraw @a {"text":"[Mounted WASD] Loaded", "color":"gold"}
-
-data merge storage mounted_wasd:main {Main:{Initialized:1b}}

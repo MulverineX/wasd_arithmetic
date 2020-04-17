@@ -1,6 +1,6 @@
 {
 	"values": [
-		"mounted_wasd:load"
+		"mounted_wasd:init"
 	],
 	"replace": false
 }
