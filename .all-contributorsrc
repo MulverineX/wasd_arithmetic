@@ -18,11 +18,13 @@
   "types": {
     "developer": {
       "symbol": "💻",
-      "description": "Original Developer, Made the original pack and the math implementation"
+      "description": "Original Developer, Made the original pack and the math implementation",
+      "link": ""
     },
     "cleaner": {
       "symbol": "🧹",
-      "description": "Cleaned, namespaced, and added documented outputs."
+      "description": "Cleaned, namespaced, and added documented outputs.",
+      "link": ""
     }
   },
   "contributorsPerLine": 7,
