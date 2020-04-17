@@ -13,20 +13,15 @@ ie. `execute as @a[tag=mp_wasd.forward] run title @s title {"text":"Forward"}` w
 
 ## Contributors ✨
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/onnowhere"><img src="https://avatars2.githubusercontent.com/u/17817284?v=4" width="100px;" alt=""/><br /><sub><b>onnowhere</b></sub></a><br /><a href="#developer-onnowhere" title="Original Developer, Made the original pack and the math implementation">💻</a></td>
-    <td align="center"><a href="http://mulverinex.github.io/home"><img src="https://avatars2.githubusercontent.com/u/12068027?v=4" width="100px;" alt=""/><br /><sub><b>MulverineX</b></sub></a><br /><a href="https://github.com/MulverineX/mountedwasd/commits?author=MulverineX" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/onnowhere"><img src="https://avatars2.githubusercontent.com/u/17817284?v=4" width="100px;" alt=""/><br /><sub><b>onnowhere</b></sub></a><br /><a href="" title="Original Developer, Made the original pack and the math implementation">💻</a></td>
+    <td align="center"><a href="http://mulverinex.github.io/home"><img src="https://avatars2.githubusercontent.com/u/12068027?v=4" width="100px;" alt=""/><br /><sub><b>MulverineX</b></sub></a><br /><a href="" title="Cleaned, Namespaced, Documented/Implemented Outputs, & Published">🧹</a></td>
+    <td align="center"><img src="https://cdn.discordapp.com/avatars/332682709908455444/31ab2166522fd28e731170d694dddc27.webp" width="100px;" alt=""/><br /><sub><b>TheWii#2934</b></sub><br /><a href="" title="Reported a Bug">🐛</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
