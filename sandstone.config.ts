@@ -5,5 +5,5 @@ export default {
   description: [ 'A', { text: 'Sandstone', color: 'gold' }, ' data pack.' ],
   formatVersion: 6,
   namespace: 'mountedwasd',
-  saveOptions: { path: './_out' }
+  saveOptions: { path: './.pack' }
 } as SandstoneConfig
