@@ -1,8 +1,3 @@
-/**
- * This file is just an example.
- * You can delete it!
- */
-
 import { data, execute, raw, say, tag, tellraw } from 'sandstone/commands'
 import { MCFunction, _ } from 'sandstone/core'
 import { createObjective, Selector } from 'sandstone/variables';
@@ -65,8 +60,6 @@ class Direction {
 }
 
 export const directions = new Direction();
-
-
 
 
 const get_input = MCFunction('get_input', () => {
