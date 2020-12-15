@@ -11,6 +11,25 @@ ie. `execute as @a if predicate mounted_wasd:mounted run function mounted_wasd:m
 This will give the player an exclusive input score & inclusive input tags all described in mounted_wasd:output
 ie. `execute as @a[tag=mp_wasd.forward] run title @s title {"text":"Forward"}` will display a title for mounted players that are inputting forward movement, even if it includes left or right
 
+## Sandstone
+To build the datapack, run:
+```ts
+npm run build
+// or
+yarn build
+// or
+sand build
+```
+
+To automatically rebuild the datapack on each change, run:
+```ts
+npm run watch
+// or
+yarn watch
+// or
+sand watch
+```
+
 ## Contributors ✨
 
 <!-- prettier-ignore-start -->
