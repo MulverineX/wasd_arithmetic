@@ -1,1 +1,0 @@
-execute unless data storage mounted_wasd:main Main.Initialized run function mounted_wasd:init

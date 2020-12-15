@@ -1,0 +1,12 @@
+{
+  "files": {
+    "_out\\mountedwasd\\pack.mcmeta": "b28a7ada66084b321c03285cb4a64d5a",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\get_input.mcfunction": "7c7698bbfbfd2100bae70bddf51c847c",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\get_input\\if.mcfunction": "f96a9dbf91af666125a09fe1441de654",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\get_input\\if_2.mcfunction": "7c2a3c216b471ffd56ff512b9ebed083",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\get_input\\execute_as.mcfunction": "55bf8828e306a7f022541f600440eae4",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\__init__.mcfunction": "f195ef652c13a8307ffc3600805419aa",
+    "_out\\mountedwasd\\data\\minecraft\\tags\\functions\\load.json": "7a077c5eeb12f3b9ce67dbbeae4b1988"
+  },
+  "rootFolder": "_out\\mountedwasd"
+}
