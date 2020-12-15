@@ -1,6 +1,6 @@
 import { comment as $, execute, raw } from 'sandstone/commands'
 import { MCFunction, _ } from 'sandstone/core'
-import { addLabel, parse_id, newLabel, newProperty, removeLabel, hasLabel } from './utils';
+import { newProperty, newLabel, addLabel, removeLabel, hasLabel as is, parse_id } from './utils';
 
 
 /* Create objectives */
@@ -9,69 +9,64 @@ export const
       vec_z = newProperty('vec_z'),
       absolute_rotation = newProperty('abs_rot'),
       local_rotation = newProperty('loc_rot'),
-      local_direction = newProperty('loc_dir'),
-      is_moving = newLabel('is_moving');
+      direction = newProperty('loc_dir'),
+      moving = newLabel('is_moving');
 
 
-enum local_directions { backward = 1, backward_left, left, forward_left, forward, forward_right, right, backward_right };
+export enum directions { backward = 1, backward_left, left, forward_left, forward, forward_right, right, backward_right };
 
 let dirs = [];
-for (const [ dir ] of Object.entries(local_directions).slice(8,16)) {
+for (const [ dir ] of Object.entries(directions).slice(8,16)) {
   dirs.push(dir);
 }
 
-const directions = dirs;
+export const direction_strings = dirs;
 
 /**
  * The directions the player is inputting.
  */
-class Direction {
+class DirectionClass {
   /**
-   * Tells whether the player is inputting forward
+   * Whether the player is inputting forward
    */
   public forward = newLabel('forward');
 
   /**
-   * Tells whether the player is inputting backward
+   * Whether the player is inputting backward
    */
   public backward = newLabel('backward');
 
   /**
-   * Tells whether the player is inputting left
+   * Whether the player is inputting left
    */
   public left = newLabel('left');
 
   /**
-   * Tells whether the player is inputting right
+   * Whether the player is inputting right
    */
   public right = newLabel('right');
 
   /**
-   * Exclusive directions the player can input
-   */
-  public available = directions;
-
-  /**
    * Exclusive direction the player is inputting
    */
-  public exact (direction: 'backward' | 'backward_left' | 'left' | 'forward_left' | 'forward' | 'forward_right' | 'right' | 'backward_right') {
-    return local_direction.equalTo(local_directions[direction]);
+  public exact (dir: 'backward' | 'backward_left' | 'left' | 'forward_left' | 'forward' | 'forward_right' | 'right' | 'backward_right') {
+    return direction.equalTo(directions[dir]);
   }
 }
 
-const input_directions = new Direction();
+export const input_directions = new DirectionClass();
 
 
-const main = MCFunction('_wasd/get_input', () => {
+export const main = MCFunction('_wasd/get_input', () => {
   $('Clear flags')
-  local_direction.set(0);
+  direction.set(0);
 
   removeLabel(input_directions.forward);
   removeLabel(input_directions.backward);
   removeLabel(input_directions.left);
   removeLabel(input_directions.right);
 
-  removeLabel(is_moving);
+  removeLabel(moving);
 
   $('Store motion to scores for access');
   execute.store.result.score(vec_x).runOne.
@@ -81,11 +76,11 @@ const main = MCFunction('_wasd/get_input', () => {
     data.get.entity('@s', 'Motion[1]', 1000);
 
   $('Ensure there is motion');
-  _.if(_.not(vec_x.equalTo(0)), () => addLabel(is_moving));
-  _.if(_.not(vec_z.equalTo(0)), () => addLabel(is_moving));
+  _.if(_.not(vec_x.equalTo(0)), () => addLabel(moving));
+  _.if(_.not(vec_z.equalTo(0)), () => addLabel(moving));
 
   $('Run calculations & output')
-  hasLabel(is_moving, () => {
+  is(moving, () => {
     let angle = -180.0;
 
     let alt = false;
@@ -93,11 +88,11 @@ const main = MCFunction('_wasd/get_input', () => {
     $('# Exclusive Inputs');
     $('Backward');
     raw(`execute if score @s ${local_rotation.objective.name} matches 1574..1800 run`,
-        `scoreboard players set @s ${local_direction.objective.name} 1`);
-    for (let i in directions) { // Deepscan: TypeScript Moment.
+        `scoreboard players set @s ${direction.objective.name} 1`);
+    for (let i in direction_strings) { // Deepscan: TypeScript Moment.
       const first = i == '0';
 
-      if (!first) $(parse_id(directions[i]));
+      if (!first) $(parse_id(direction_strings[i]));
 
       const angle_a = angle + ( first ? 0 : (alt ? -.1 : .1));
 
@@ -108,7 +103,7 @@ const main = MCFunction('_wasd/get_input', () => {
       const score = parseInt(i) + 1;
 
       raw(`execute if score @s ${local_rotation.objective.name} matches ${angle_a*10}..${angle_b*10} run`,
-        `scoreboard players set @s ${local_direction.objective.name} ${score}`);
+        `scoreboard players set @s ${direction.objective.name} ${score}`);
 
       alt = !alt;
     }
@@ -120,14 +115,14 @@ const main = MCFunction('_wasd/get_input', () => {
     $('Backward')
     const backward = `tag @s add ${input_directions.backward.raw_name}`;
 
-    raw(`execute if score @s ${local_direction.objective.name} matches 8 run`, backward);
-    raw(`execute if score @s ${local_direction.objective.name} matches 1..2 run`, backward);
+    raw(`execute if score @s ${direction.objective.name} matches 8 run`, backward);
+    raw(`execute if score @s ${direction.objective.name} matches 1..2 run`, backward);
 
     let num = 2;    
 
     for (const cardinal of cardinals) {
       $(parse_id(cardinal.name));
-      raw(`execute if score @s ${local_direction.objective.name} matches ${num}..${num + 2} run`,
+      raw(`execute if score @s ${direction.objective.name} matches ${num}..${num + 2} run`,
         `tag @s add ${cardinal.raw_name}`);
       num += 2;
     }

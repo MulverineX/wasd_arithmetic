@@ -1,6 +1,6 @@
-import { execute, say } from 'sandstone/commands';
+import { say } from 'sandstone/commands';
 import { MCFunction } from 'sandstone/core';
-import get_direction from './index';
+import get_direction from '.';
 import { hasLabel as is } from './utils';
 
 MCFunction('test', () => {

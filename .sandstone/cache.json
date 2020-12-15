@@ -1,13 +1,21 @@
 {
   "files": {
     "_out\\mountedwasd\\pack.mcmeta": "b28a7ada66084b321c03285cb4a64d5a",
-    "_out\\mountedwasd\\data\\mountedwasd\\functions\\_wasd\\get_input.mcfunction": "1ca2ec96b64ece44bda971c1d6ead0c6",
-    "_out\\mountedwasd\\data\\mountedwasd\\functions\\_wasd\\get_input\\if.mcfunction": "1143bcdeaebec2bf00b4dc00dccd3415",
-    "_out\\mountedwasd\\data\\mountedwasd\\functions\\_wasd\\get_input\\if_2.mcfunction": "f7bc34a8913bc0045f05cd9ca480885b",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\_wasd\\get_input.mcfunction": "a7c9f07dfeb58b39897e4e75baf146e5",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\_wasd\\get_input\\if.mcfunction": "bb0891bcde80e27308a1d7eb612ccf55",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\_wasd\\get_input\\if_2.mcfunction": "60ff73b3f777fb1da0f47ec72b7b10fe",
     "_out\\mountedwasd\\data\\mountedwasd\\functions\\_wasd\\get_input\\execute_as.mcfunction": "9719c5015f0d67e41ca2356ee76dfe50",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\_wasd\\math.mcfunction": "fe7eea1c7b0a35e1a4adc96db5182cf6",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\_wasd\\math\\if.mcfunction": "c68c11a6684e7a8c272c90bdb8c64884",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\_wasd\\math\\if_2.mcfunction": "2e283d54c2a0f823300cb860ae7c8a78",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\_wasd\\math\\execute_as.mcfunction": "326de27b44ab2ab7fc7a5a0f47820db4",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\_wasd\\math\\execute_as_2.mcfunction": "ed5992ec222fda2508b38c12c9849e87",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\_wasd\\math\\if_3.mcfunction": "60be4513022ced4bfe6973cb1f2eeca7",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\_wasd\\math\\execute_as_3.mcfunction": "326de27b44ab2ab7fc7a5a0f47820db4",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\_wasd\\math\\execute_as_4.mcfunction": "ed5992ec222fda2508b38c12c9849e87",
     "_out\\mountedwasd\\data\\mountedwasd\\functions\\test.mcfunction": "243146452303223b456d0ab2d051b106",
     "_out\\mountedwasd\\data\\mountedwasd\\functions\\test\\execute_as.mcfunction": "240377f19023fa2524f11e945ac28348",
-    "_out\\mountedwasd\\data\\mountedwasd\\functions\\__init__.mcfunction": "02820107b718e7421da3b4afa9c805b2",
+    "_out\\mountedwasd\\data\\mountedwasd\\functions\\__init__.mcfunction": "5cfc0f43852e09a972dfc4223f5ff7c8",
     "_out\\mountedwasd\\data\\minecraft\\tags\\functions\\load.json": "7a077c5eeb12f3b9ce67dbbeae4b1988"
   },
   "rootFolder": "_out\\mountedwasd"
