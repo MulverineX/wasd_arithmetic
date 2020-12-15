@@ -1,5 +1,6 @@
 import { comment as $, execute, raw } from 'sandstone/commands'
 import { MCFunction, _ } from 'sandstone/core'
+import calculate from './calculate';
 import { newProperty, newLabel, addLabel, removeLabel, hasLabel as is, parse_id } from './utils';
 
 
@@ -81,6 +82,8 @@ export const main = MCFunction('_wasd/get_input', () => {
 
   $('Run calculations & output')
   is(moving, () => {
+    calculate();
+
     let angle = -180.0;
 
     let alt = false;

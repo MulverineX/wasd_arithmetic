@@ -1,3 +1,4 @@
+function mountedwasd:_wasd/calculate
 # # Exclusive Inputs
 # Backward
 execute if score @s mtwasd.loc_rot matches 1574..1800 run scoreboard players set @s mtwasd.loc_dir 1
