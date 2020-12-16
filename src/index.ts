@@ -1,5 +1,5 @@
 import { comment as $, execute, raw, tellraw } from 'sandstone/commands'
-import { MCFunction, _ } from 'sandstone/core'
+import { MCFunction, Predicate, _ } from 'sandstone/core'
 import calculate from './calculate';
 import { newProperty, newLabel, addLabel, removeLabel, hasLabel as is, parse_id } from './utils';
 
@@ -131,6 +131,14 @@ export const main = MCFunction('_wasd/get_input', () => {
     }
   })
 })
+
+export const is_mounted = Predicate('is_mounted',{
+  condition: 'minecraft:entity_properties',
+  entity: 'this',
+  predicate: {
+    nbt: '{RootVehicle:{}}'
+  }
+}) 
 
 export default function get_input () {
   main();

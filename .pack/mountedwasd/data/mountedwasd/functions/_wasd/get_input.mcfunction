@@ -9,9 +9,9 @@ tag @s remove mountedwasd.is_moving
 execute store result score @s mtwasd.vec_x run data get entity @s Motion[0] 1000
 execute store result score @s mtwasd.vec_z run data get entity @s Motion[1] 1000
 # Ensure there is motion
-scoreboard players set if_result_251 sandstone_cond 0
+scoreboard players set if_result_8811 sandstone_cond 0
 execute unless score @s mtwasd.vec_x matches 0 run function mountedwasd:_wasd/get_input/if
-scoreboard players set if_result_1694 sandstone_cond 0
+scoreboard players set if_result_653 sandstone_cond 0
 execute unless score @s mtwasd.vec_z matches 0 run function mountedwasd:_wasd/get_input/if_2
 # Run calculations & output
 execute as @s[tag=mountedwasd.is_moving] run function mountedwasd:_wasd/get_input/execute_as
