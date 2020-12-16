@@ -1,2 +1,2 @@
 tag @s add mountedwasd._invert
-scoreboard players set if_result_4822 sandstone_cond 1
+scoreboard players set if_result_1682 sandstone_cond 1

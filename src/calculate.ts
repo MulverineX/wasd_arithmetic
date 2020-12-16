@@ -1,7 +1,7 @@
-import { comment as $, execute, scoreboard } from 'sandstone/commands';
+import { comment as $, execute, scoreboard, tellraw } from 'sandstone/commands';
 import { MCFunction, _ } from 'sandstone/core';
 import { Selector } from 'sandstone/variables';
-import { absolute_rotation, input_directions, vec_x, vec_z } from '.';
+import { absolute_rotation, input_directions, local_rotation, vec_x, vec_z } from '.';
 import { newProperty, newLabel, addLabel, removeLabel, hasLabel as is } from './utils';
 
 const scale = (x: number) => x*1000;
@@ -11,7 +11,7 @@ export default MCFunction('_wasd/calculate', () => {
   execute.store.result.score(absolute_rotation).runOne.
     data.get.entity('@s', 'Motion[0]', 1000);
 
-  _.if(absolute_rotation.lowerThan(0), () => { absolute_rotation.set(360000) });
+  _.if(absolute_rotation.lowerThan(0), () => { absolute_rotation.set(scale(360)) });
 
   const calculate = [ newProperty('_calc0'), newProperty('_calc1') ],
         negate = newLabel('_negate');
@@ -166,4 +166,6 @@ export default MCFunction('_wasd/calculate', () => {
   $('atan2(-x) = -atan2(x)');
   $('x>1 atan2(x) = 90-atan2(1/x)');
   $('atan2(det/dot)');
+
+  local_rotation.set(calculate[0]);
 })

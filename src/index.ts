@@ -1,4 +1,4 @@
-import { comment as $, execute, raw } from 'sandstone/commands'
+import { comment as $, execute, raw, tellraw } from 'sandstone/commands'
 import { MCFunction, _ } from 'sandstone/core'
 import calculate from './calculate';
 import { newProperty, newLabel, addLabel, removeLabel, hasLabel as is, parse_id } from './utils';
