@@ -1,4 +1,4 @@
-import { comment as $, execute, scoreboard, tellraw } from 'sandstone/commands';
+import { comment as $, execute, raw, scoreboard } from 'sandstone/commands';
 import { MCFunction, _ } from 'sandstone/core';
 import { Selector } from 'sandstone/variables';
 import { absolute_rotation, input_directions, local_rotation, vec_x, vec_z } from '.';
@@ -9,9 +9,9 @@ const scale = (x: number) => x*1000;
 export default MCFunction('_wasd/calculate', () => {
   $('# Get Rotation');
   execute.store.result.score(absolute_rotation).runOne.
-    data.get.entity('@s', 'Motion[0]', 1000);
+    data.get.entity('@s', 'Rotation[0]', 1000);
 
-  _.if(absolute_rotation.lowerThan(0), () => { absolute_rotation.set(scale(360)) });
+  scoreboard.players.add(`@s[tag=${input_directions.forward.raw_name},scores={${absolute_rotation.objective.name}=..0}]`, absolute_rotation.objective, scale(360));
 
   const calculate = [ newProperty('_calc0'), newProperty('_calc1') ],
         negate = newLabel('_negate');
@@ -22,7 +22,6 @@ export default MCFunction('_wasd/calculate', () => {
 
   const sine = () => {
     $("Calculate sine using Bhaskara I's approx.");
-    calculate[0].modulo(scale(360));
 
     _.if(calculate[0].greaterOrEqualThan(scale(180)), () => { addLabel(negate) });
 
@@ -64,6 +63,8 @@ export default MCFunction('_wasd/calculate', () => {
 
   $('');
 
+  dzrot.set(calculate[1]);
+
   const temp = [ calculate[0].objective.ScoreHolder('temp0'), calculate[0].objective.ScoreHolder('temp1') ];
 
   $('# Calculate dot product');
@@ -78,12 +79,14 @@ export default MCFunction('_wasd/calculate', () => {
   _.if(calculate[0].lowerOrEqualThan(-1), () => addLabel(negate));
 
   $('# Calculate determinant')
+  calculate[1].set(vec_x);
   temp[0].set(vec_z);
-  calculate[1].set(vec_x)
 
   calculate[1].multiply(dxrot);
   temp[0].multiply(dzrot);
   calculate[1].add(temp[0]);
+
+  $('');
 
   _.if(calculate[1].greaterOrEqualThan(1), () => addLabel(input_directions.forward))
 

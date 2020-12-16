@@ -1,4 +1,4 @@
-import { comment as $, execute, raw, tellraw } from 'sandstone/commands'
+import { comment as $, execute, raw } from 'sandstone/commands'
 import { MCFunction, Predicate, _ } from 'sandstone/core'
 import calculate from './calculate';
 import { newProperty, newLabel, addLabel, removeLabel, hasLabel as is, parse_id } from './utils';
@@ -74,11 +74,12 @@ export const main = MCFunction('_wasd/get_input', () => {
     data.get.entity('@s', 'Motion[0]', 1000);
 
   execute.store.result.score(vec_z).runOne.
-    data.get.entity('@s', 'Motion[1]', 1000);
+    data.get.entity('@s', 'Motion[2]', 1000);
 
   $('Ensure there is motion');
-  _.if(_.not(vec_x.equalTo(0)), () => addLabel(moving));
-  _.if(_.not(vec_z.equalTo(0)), () => addLabel(moving));
+  execute.unlessScore('@s', vec_x.objective, 'matches', 0).runOne.raw('tag @s add mountedwasd.is_moving');
+
+  execute.unlessScore('@s', vec_z.objective, 'matches', 0).runOne.raw('tag @s add mountedwasd.is_moving');
 
   $('Run calculations & output')
   is(moving, () => {

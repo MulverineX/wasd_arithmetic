@@ -6,5 +6,5 @@ import { hasLabel as is } from './utils';
 MCFunction('test', () => {
     const direction = get_direction();
 
-    is(direction.backward, () => say('back it up'));
+    is(direction.backward, () => say('take it back'));
 })

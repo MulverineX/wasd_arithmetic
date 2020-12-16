@@ -1,2 +1,2 @@
-scoreboard players set @s mtwasd.abs_rot 360000
-scoreboard players set if_result_5598 sandstone_cond 1
+tag @s add mountedwasd._negate
+scoreboard players set if_result_8094 sandstone_cond 1
