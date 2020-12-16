@@ -1,4 +1,4 @@
-import { comment as $, execute, raw, scoreboard } from 'sandstone/commands';
+import { comment as $, execute, raw, scoreboard, tellraw } from 'sandstone/commands';
 import { MCFunction, _ } from 'sandstone/core';
 import { Selector } from 'sandstone/variables';
 import { absolute_rotation, input_directions, local_rotation, vec_x, vec_z } from '.';
@@ -107,8 +107,7 @@ export default MCFunction('_wasd/calculate', () => {
   is(invert, () => {
     calculate[1].set(calculate[0]);
     
-    calculate[0].multiply(100)
-                .divide(calculate[1]);
+    calculate[0].set(100).divide(calculate[1]);
   });
 
   temp[0].set(calculate[0]).remove(10);
@@ -171,4 +170,16 @@ export default MCFunction('_wasd/calculate', () => {
   $('atan2(det/dot)');
 
   local_rotation.set(calculate[0]);
+
+  $('');
+  temp[0].set(absolute_rotation).divide(1000);
+  _.if(temp[0].lowerOrEqualThan(-180), () => { temp[0].add(360) });
+  temp[1].set(calculate[0]).divide(10);
+  tellraw('@s', [
+    'Absolute Rotation: ', { score: { name: 'temp0', objective: temp[0].objective.name} }, '\n',
+    'Local Rotation: ', { score: { name: 'temp1', objective: temp[0].objective.name} }, '\n',
+    'Motion Vector: \n',
+    '  X: ', { score: { name: '@s', objective: vec_x.objective.name} }, '\n',
+    '  Z: ', { score: { name: '@s', objective: vec_z.objective.name} }
+  ])
 })

@@ -1,4 +1,4 @@
-import { comment as $, execute, raw } from 'sandstone/commands'
+import { comment as $, execute, raw, tellraw } from 'sandstone/commands'
 import { MCFunction, Predicate, _ } from 'sandstone/core'
 import calculate from './calculate';
 import { newProperty, newLabel, addLabel, removeLabel, hasLabel as is, parse_id } from './utils';
@@ -130,6 +130,11 @@ export const main = MCFunction('_wasd/get_input', () => {
         `tag @s add ${cardinal.raw_name}`);
       num += 2;
     }
+
+    $('');
+    tellraw('@s', [
+      'Direction: ', { score: { name: '@s', objective: direction.objective.name} }
+    ])
   })
 })
 

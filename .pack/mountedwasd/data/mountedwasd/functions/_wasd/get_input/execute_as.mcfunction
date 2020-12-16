@@ -28,3 +28,5 @@ execute if score @s mtwasd.loc_dir matches 2..4 run tag @s add mountedwasd.left
 execute if score @s mtwasd.loc_dir matches 4..6 run tag @s add mountedwasd.forward
 # Right
 execute if score @s mtwasd.loc_dir matches 6..8 run tag @s add mountedwasd.right
+# 
+tellraw @s ["Direction: ", {"score": {"name": "@s", "objective": "mtwasd.loc_dir"}}]
