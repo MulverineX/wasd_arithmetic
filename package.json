@@ -4,7 +4,8 @@
   "description": "A data pack created with Sandstone",
   "scripts": {
     "watch": "sand watch",
-    "build": "sand build"
+    "build": "sand build",
+    "link": "start \"\" \".env\\link.lnk\""
   },
   "keywords": [],
   "author": "",
