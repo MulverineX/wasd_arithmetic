@@ -20,8 +20,7 @@ jobs:
 
       - name: Clear project files
         run: |
-          rm -v !\("LICENSE"|"README.md"\)
-          rm -rf .env .github .pack .sandstone build node_modules src
+          rm -rf !(LICENSE|README.md|.pack)
 
       - name: Add & Commit changes
         run: |
