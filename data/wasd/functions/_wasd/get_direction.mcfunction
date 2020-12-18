@@ -5,7 +5,7 @@ tag @s remove wasd.backward
 tag @s remove wasd.left
 tag @s remove wasd.right
 # Run calculations & output
-function wasd:math
+function wasd:_wasd/math
 # # Exclusive Inputs
 # Backward
 execute if score @s wasd._calc0 matches 1574..1800 run scoreboard players set @s wasd.loc_dir 1
