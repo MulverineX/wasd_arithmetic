@@ -6,14 +6,14 @@ import { newProperty, newLabel, addLabel, removeLabel, hasLabel as is } from './
 
 const scale = (x: number) => x*1000;
 
-export default function calculate (input: Direction) {
+export default function (input: Direction) {
 
   const calculate = [ newProperty('_calc0'), newProperty('_calc1') ],
         absolute_rotation = input.absolute.rotation,
         vec_x = input.absolute.vector.X,
         vec_z = input.absolute.vector.Z;
 
-  const math = MCFunction('_wasd/calculate', () => {
+  const math = MCFunction('math', () => {
     $('# Get Rotation');
     execute.store.result.score(absolute_rotation).runOne.
       data.get.entity('@s', 'Rotation[0]', 1000);

@@ -1,7 +1,7 @@
 {
-  "name": "smc-mountedwasd",
-  "version": "2.0.2",
-  "description": "A Sandstone data pack library for detecting WASD input while mounted",
+  "name": "smc-wasd",
+  "version": "2.1.0",
+  "description": "A Sandstone data pack library for detecting WASD input",
   "contributors": [
     {
       "name": "Onnowhere",
@@ -17,8 +17,7 @@
   "scripts": {
     "publish": "tsc && npm publish",
     "watch": "sand watch",
-    "build": "sand build",
-    "link": "cmd /c \"mklink /J C:\\Programs\\multimc\\instances\\1.16.3\\.minecraft\\saves\\NewWorld\\datapacks\\mountedwasd C:\\Users\\mulve\\Documents\\workspace\\minecraft\\sandstone\\mountedwasd\\master\\.pack\\mountedwasd\""
+    "build": "sand build"
   },
   "license": "CC0-1.0",
   "peerDependencies": {

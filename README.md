@@ -1,19 +1,19 @@
-# mountedwasd
+# wasd arithmetic
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-A Minecraft Sandstone data pack library for detecting WASD input while mounted.
+A Minecraft Sandstone data pack library for detecting WASD input that uses arithmetic for calculations.
 
 ## Usage
 ### Vanilla
-Import pack files from [here](https://github.com/MulverineX/mountedwasd/tree/generated), follow instructions on README
+Import pack files from [here](https://github.com/MulverineX/wasd_arithmetic/tree/generated), follow instructions on README
 
 ### Sandstone
-Follow/base off [example project](https://github.com/MulverineX/mountedwasd/tree/example)
+Follow/base off [example project](https://github.com/MulverineX/wasd_arithmetic/tree/example)
 
 Add the module to your workspace
 ```
-npm install smc-mountedwasd
+npm install smc-wasd
 ```
 
 ## Development

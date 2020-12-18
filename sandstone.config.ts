@@ -1,9 +1,9 @@
 import { SandstoneConfig } from 'sandstone/core'
 
 export default {
-  name: 'mountedwasd',
+  name: 'wasd',
   description: [ 'A data pack library for detecting WASD input while mounted' ],
   formatVersion: 6,
-  namespace: 'mountedwasd',
+  namespace: 'wasd',
   saveOptions: { path: './.pack' }
 } as SandstoneConfig

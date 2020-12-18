@@ -21,7 +21,7 @@ jobs:
         run: |
           git worktree add gen generated
           rm -rf gen/*
-          mv .pack/mountedwasd/* gen
+          mv .pack/wasd/* gen
           cd gen
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'

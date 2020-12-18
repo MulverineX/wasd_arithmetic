@@ -1,7 +1,7 @@
 import { comment as $, execute, raw } from 'sandstone/commands'
 import { MCFunction, Predicate, _ } from 'sandstone/core'
 import calculate from './calculate';
-import { newProperty, newLabel, removeLabel, hasLabel as is, parse_id } from './utils';
+import { newProperty, newLabel, removeLabel, parse_id, addLabel } from './utils';
 
 
 const directions = [ 'backward', 'backward_left', 'left', 'forward_left', 'forward', 'forward_right', 'right', 'backward_right' ] as const;
@@ -108,8 +108,8 @@ export class Direction {
 
 const input = new Direction();
 
-const main = MCFunction('_wasd/get_input', () => {
-  $('Clear flags')
+const main = MCFunction('get_direction', () => {
+  $('Clear flags');
   input.score.set(0);
 
   removeLabel(input.forward);
@@ -117,81 +117,117 @@ const main = MCFunction('_wasd/get_input', () => {
   removeLabel(input.left);
   removeLabel(input.right);
 
-  removeLabel(input.moving);
-
-  const vec_x = input.absolute.vector.X, vec_z = input.absolute.vector.Z;
-
-  $('Store motion to scores for access');
-  execute.store.result.score(vec_x).runOne.
-    data.get.entity('@s', 'Motion[0]', 1000);
-
-  execute.store.result.score(vec_z).runOne.
-    data.get.entity('@s', 'Motion[2]', 1000);
-
-  $('Ensure there is motion');
-  execute.unlessScore('@s', vec_x.objective, 'matches', 0).runOne.raw('tag @s add mountedwasd.is_moving');
-
-  execute.unlessScore('@s', vec_z.objective, 'matches', 0).runOne.raw('tag @s add mountedwasd.is_moving');
-
   $('Run calculations & output')
-  is(input.moving, () => {
-    const local_rotation = calculate(input);
+  const local_rotation = calculate(input);
 
-    let angle = -180.0;
+  let angle = -180.0,
+      alt = false;
 
-    let alt = false;
+  $('# Exclusive Inputs');
+  $('Backward');
+  raw(`execute if score @s ${local_rotation.objective.name} matches 1574..1800 run`,
+      `scoreboard players set @s ${input.score.objective.name} 1`);
+  for (let i in input.directions) { // Deepscan: TypeScript Moment.
+    const first = i == '0';
 
-    $('# Exclusive Inputs');
-    $('Backward');
-    raw(`execute if score @s ${local_rotation.objective.name} matches 1574..1800 run`,
-        `scoreboard players set @s ${input.score.objective.name} 1`);
-    for (let i in input.directions) { // Deepscan: TypeScript Moment.
-      const first = i == '0';
+    if (!first) $(parse_id(input.directions[i]));
 
-      if (!first) $(parse_id(input.directions[i]));
+    const angle_a = angle + ( first ? 0 : (alt ? -.1 : .1));
 
-      const angle_a = angle + ( first ? 0 : (alt ? -.1 : .1));
+    angle += first ? 22.5 : 45;
 
-      angle += first ? 22.5 : 45;
+    const angle_b = angle + (i == '7' ? .1 : (alt ? -.1 : .1));
 
-      const angle_b = angle + (i == '7' ? .1 : (alt ? -.1 : .1));
+    const score = parseInt(i) + 1;
 
-      const score = parseInt(i) + 1;
+    raw(`execute if score @s ${local_rotation.objective.name} matches ${angle_a*10}..${angle_b*10} run`,
+      `scoreboard players set @s ${input.score.objective.name} ${score}`);
 
-      raw(`execute if score @s ${local_rotation.objective.name} matches ${angle_a*10}..${angle_b*10} run`,
-        `scoreboard players set @s ${input.score.objective.name} ${score}`);
+    alt = !alt;
+  }
 
-      alt = !alt;
-    }
+  $('');
+  $('# Inclusive Inputs');
+  $('Backward')
+  const backward = `tag @s add ${input.backward.raw_name}`;
 
-    $('');
-    $('# Inclusive Inputs');
-    $('Backward')
-    const backward = `tag @s add ${input.backward.raw_name}`;
+  raw(`execute if score @s ${input.score.objective.name} matches 8 run`, backward);
+  raw(`execute if score @s ${input.score.objective.name} matches 1..2 run`, backward);
 
-    raw(`execute if score @s ${input.score.objective.name} matches 8 run`, backward);
-    raw(`execute if score @s ${input.score.objective.name} matches 1..2 run`, backward);
+  let num = 2;    
 
-    let num = 2;    
+  for (const cardinal of input.cardinals.slice(1).map(x => input[x])) {
+    $(parse_id(cardinal.name));
+    raw(`execute if score @s ${input.score.objective.name} matches ${num}..${num + 2} run`,
+      `tag @s add ${cardinal.raw_name}`);
+    num += 2;
+  }
+});
 
-    for (const cardinal of input.cardinals.slice(1).map(x => input[x])) {
-      $(parse_id(cardinal.name));
-      raw(`execute if score @s ${input.score.objective.name} matches ${num}..${num + 2} run`,
-        `tag @s add ${cardinal.raw_name}`);
-      num += 2;
-    }
-  })
-})
-
-export const is_mounted = Predicate('is_mounted',{
+export const is_mounted = Predicate('is_mounted', {
   condition: 'minecraft:entity_properties',
   entity: 'this',
-  predicate: {
-    nbt: '{RootVehicle:{}}'
-  }
-}) 
+  predicate: { vehicle: {} }
+});
 
-export default function get_input() {
-  main();
+function ensure_motion() {
+  removeLabel(input.moving);
+
+  $('Ensure there is motion');
+  _.if(_.or(
+    input.absolute.vector.X.greaterThan(0), 
+    input.absolute.vector.Z.greaterThan(0)
+  ), () => {
+    addLabel(input.moving);
+
+    main();
+  });
+}
+
+const old =     { X: newProperty('ovec_x'), Z: newProperty('ovec_z') },
+      current = { X: newProperty('cvec_x'), Z: newProperty('cvec_z') };
+
+const walking = MCFunction('walking', () => {
+  $('Store position to scores for access');
+      
+  execute.store.result.score(current.X).runOne.
+    data.get.entity('@s', 'Pos[0]', 1000);
+
+  execute.store.result.score(current.Z).runOne.
+    data.get.entity('@s', 'Pos[2]', 1000);
+  
+  input.absolute.vector.X.set(current.X).remove(old.X);
+  
+  input.absolute.vector.Z.set(current.Z).remove(old.Z);
+
+  old.X.set(current.X);
+  old.Z.set(current.Z);
+
+  ensure_motion();
+})
+
+const mounted = MCFunction('mounted', () => {
+  $('Store motion to scores for access');
+
+  execute.store.result.score(input.absolute.vector.X).runOne.
+    data.get.entity('@s', 'Motion[0]', 1000);
+
+  execute.store.result.score(input.absolute.vector.Z).runOne.
+    data.get.entity('@s', 'Motion[2]', 1000);
+
+  ensure_motion();
+})
+
+/**
+ * Get input directions from a player
+ * @param mode Define if mode of input is assured
+ */
+export default function (mode: 'walking' | 'mounted' | false = false) {
+  if (!mode) _.if(is_mounted, () => mounted()).else(async () => walking());
+  else if (mode === 'walking') walking();
+  else mounted();
+
+  ensure_motion();
+
   return input;
 }

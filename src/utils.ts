@@ -1,10 +1,7 @@
 import { execute, tag } from "sandstone/commands";
 import { createObjective, Selector } from "sandstone/variables";
 
-const namespace = {
-  full: 'mountedwasd',
-  short: 'mtwasd' 
-};
+const namespace = { full: 'wasd', short: 'wasd' };
 
 /**
  * Label tag (/tag) handler
