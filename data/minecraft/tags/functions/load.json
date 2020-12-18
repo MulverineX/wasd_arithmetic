@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "mountedwasd:__init__"
+    "wasd:__init__"
   ]
 }

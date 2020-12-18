@@ -1,0 +1,1 @@
+scoreboard players operation @s wasd._calc0 *= -1 sandstone_const
