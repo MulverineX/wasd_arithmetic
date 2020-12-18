@@ -1,6 +1,6 @@
 {
   "name": "smc-mountedwasd",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A Sandstone data pack library for detecting WASD input while mounted",
   "contributors": [
     {
