@@ -1,6 +1,6 @@
 {
   "name": "smc-mountedwasd",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A Sandstone data pack library for detecting WASD input while mounted",
   "contributors": [
     {
@@ -12,7 +12,7 @@
       "url": "https://github.com/MulverineX"
     }
   ],
-  "index": "build/index.js",
+  "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
     "watch": "sand watch",
