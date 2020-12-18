@@ -18,12 +18,13 @@ jobs:
           npm run build
           git clone https://github.com/MulverineX/mountedwasd gen
           cd gen
+          git checkout generated
           rm -rf data/* pack.mcmeta
           mv ../.pack/mountedwasd/* data
 
       - name: Add & Commit changes
         run: |
-          ls
+          cd gen
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'
           git add -A
