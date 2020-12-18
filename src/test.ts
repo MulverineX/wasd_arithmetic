@@ -11,8 +11,9 @@ MCFunction('test', () => {
 
    is(input.moving, () => {
       const direction = {
-         arrow: [ '↓', '←', '↑', '→' ],
-         bind:  [ 'S', 'A', 'W', 'D' /* uuude? */ ]
+         // 'backward', 'backward_left', 'left', 'forward_left', 'forward', 'forward_right', 'right', 'backward_right'
+         arrow: [ '↓', '↙', '←','↖', '↑', '↗', '→', '↘' ],
+         bind:  [ 'S', 'AS', 'A', 'AW', 'W', 'DA', 'D', 'DS' ]
       }
 
       const display_type = newProperty('display');
@@ -20,17 +21,20 @@ MCFunction('test', () => {
       function directions(display: (i: number, dir: string) => string) {
          for (const [ i, dir ] of input.directions.entries()) {
 
-            _.if(input.exact(dir), () => title('@s').actionbar(display(i, dir)));
+            _.if(input.exact(dir), () => {
+               title('@s').actionbar({ text: display(i, dir), color: 'gold', bold: true });
 
-            const vector = input.local_vector(dir, 0.05);
+               const vector = input.local_vector(dir, 0.25);
 
-            execute.rotated(['~', '0']).as(Selector('@e', { type: 'minecraft:minecart', distance: [0, .5], limit: 1, sort: 'nearest' })).runOne
-               .teleport('@s', loc(vector.X, 0, vector.Z));
+               execute.rotated(['~', '0']).as(Selector('@e', { type: 'minecraft:minecart', distance: [0, .5], limit: 1, sort: 'nearest' }))
+                  .positionedAs('@s').runOne
+                  .teleport('@s', loc(vector.X, 0, vector.Z));
+            });
          }
       }
 
       _.if(display_type.equalTo(0), () => directions((i, dir) => parse_id(dir)));
-        
+      
       _.if(display_type.equalTo(1), () => directions(i => direction.bind[i]));
 
       _.if(display_type.equalTo(2), () => directions(i => direction.arrow[i]));

@@ -1,2 +1,3 @@
-title @s actionbar
-scoreboard players set if_result_8486 sandstone_cond 1
+title @s actionbar {"text": "→", "color": "gold", "bold": true}
+execute rotated ~ 0 as @e[type=minecraft:minecart, limit=1, sort=nearest] positioned as @s run teleport @s ^-0.25 ^ ^
+scoreboard players set if_result_7302 sandstone_cond 1

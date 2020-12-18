@@ -89,7 +89,7 @@ export class Direction {
   public local_vector (direction: typeof directions[number] | number, magnitude: number = 1) {
     const full = 1*magnitude;
 
-    const diag = Math.sqrt(full**2 + full**2);
+    const diag = Math.sqrt(full**2) / 2;
 
     // 'backward', 'backward_left', 'left', 'forward_left', 'forward', 'forward_right', 'right', 'backward_right'
     switch (typeof direction === 'number' ? direction : directions.findIndex(x => x === direction)) {
