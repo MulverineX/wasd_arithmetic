@@ -1,2 +1,2 @@
 tag @s add mountedwasd._flip
-scoreboard players set if_result_9568 sandstone_cond 1
+scoreboard players set if_result_4266 sandstone_cond 1
