@@ -21,6 +21,7 @@ jobs:
       - name: Add & Commit changes
         run: |
           git worktree add gen generated
+          ls
           rm -rf gen/*
           mv .pack/mountedwasd/* gen
           cd gen
