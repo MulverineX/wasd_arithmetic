@@ -4,7 +4,7 @@ scoreboard players add @s[scores={mtwasd.abs_rot=..0}] mtwasd.abs_rot 360000
 # # Calculate rotation vector
 scoreboard players operation @s mtwasd._calc0 = @s mtwasd.abs_rot
 # Calculate sine using Bhaskara I's approx.
-scoreboard players set if_result_5131 sandstone_cond 0
+scoreboard players set if_result_2385 sandstone_cond 0
 execute if score @s mtwasd._calc0 matches 180000.. run function mountedwasd:_wasd/calculate/if
 execute as @s[tag=mountedwasd._negate] run function mountedwasd:_wasd/calculate/execute_as
 scoreboard players set @s mtwasd._calc1 180000
@@ -26,7 +26,7 @@ scoreboard players operation @s mtwasd._calc0 = @s mtwasd.abs_rot
 # Calculate cosine ~ `cos(x)=sin(x+90)`
 scoreboard players add @s mtwasd._calc0 90000
 # Calculate sine using Bhaskara I's approx.
-scoreboard players set if_result_9974 sandstone_cond 0
+scoreboard players set if_result_4442 sandstone_cond 0
 execute if score @s mtwasd._calc0 matches 180000.. run function mountedwasd:_wasd/calculate/if_2
 execute as @s[tag=mountedwasd._negate] run function mountedwasd:_wasd/calculate/execute_as_3
 scoreboard players set @s mtwasd._calc1 180000
@@ -49,7 +49,7 @@ scoreboard players operation @s mtwasd._calc0 *= dxrot mtwasd._calc0
 scoreboard players operation temp0 mtwasd._calc0 *= dzrot mtwasd._calc0
 scoreboard players operation @s mtwasd._calc0 -= temp0 mtwasd._calc0
 scoreboard players operation @s mtwasd._calc0 *= 10 sandstone_const
-scoreboard players set if_result_1625 sandstone_cond 0
+scoreboard players set if_result_2109 sandstone_cond 0
 execute if score @s mtwasd._calc0 matches ..-1 run function mountedwasd:_wasd/calculate/if_3
 # # Calculate determinant
 scoreboard players operation @s mtwasd._calc1 = @s mtwasd.vec_x
@@ -58,16 +58,16 @@ scoreboard players operation @s mtwasd._calc1 *= dxrot mtwasd._calc0
 scoreboard players operation temp0 mtwasd._calc0 *= dzrot mtwasd._calc0
 scoreboard players operation @s mtwasd._calc1 += temp0 mtwasd._calc0
 # 
-scoreboard players set if_result_3211 sandstone_cond 0
+scoreboard players set if_result_8399 sandstone_cond 0
 execute if score @s mtwasd._calc1 matches 1.. run function mountedwasd:_wasd/calculate/if_4
-execute if score if_result_3211 sandstone_cond matches 0 if score @s mtwasd._calc1 matches ..-1 run function mountedwasd:_wasd/calculate/else_if
+execute if score if_result_8399 sandstone_cond matches 0 if score @s mtwasd._calc1 matches ..-1 run function mountedwasd:_wasd/calculate/else_if
 # # Calculate Local Rotation
 # Calculate arc tangent (atan2)
 scoreboard players operation @s mtwasd._calc0 /= @s mtwasd._calc1
-scoreboard players set if_result_5564 sandstone_cond 0
+scoreboard players set if_result_5896 sandstone_cond 0
 execute if score @s mtwasd._calc0 matches ..-1 run function mountedwasd:_wasd/calculate/if_5
 execute as @s[tag=mountedwasd._flip] run function mountedwasd:_wasd/calculate/execute_as_5
-scoreboard players set if_result_3389 sandstone_cond 0
+scoreboard players set if_result_8603 sandstone_cond 0
 execute if score @s mtwasd._calc0 matches 11.. run function mountedwasd:_wasd/calculate/if_6
 execute as @s[tag=mountedwasd._invert] run function mountedwasd:_wasd/calculate/execute_as_6
 scoreboard players operation temp0 mtwasd._calc0 = @s mtwasd._calc0
