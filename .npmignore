@@ -1,9 +1,5 @@
 .github/
 
-.pack/
-
-.sandstone/
-
 node_modules/
 
 sandstone.config.ts

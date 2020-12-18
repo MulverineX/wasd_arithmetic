@@ -173,11 +173,11 @@ export const is_mounted = Predicate('is_mounted', {
 function ensure_motion() {
   removeLabel(input.moving);
 
-  $('Ensure there is motion');
-  _.if(_.or(
-    input.absolute.vector.X.greaterThan(0), 
-    input.absolute.vector.Z.greaterThan(0)
-  ), () => {
+  $('Ensure there is a vector');
+  _.if(_.not(_.and(
+    input.absolute.vector.X.equalTo(0), 
+    input.absolute.vector.Z.equalTo(0)
+  )), () => {
     addLabel(input.moving);
 
     main();
@@ -204,7 +204,7 @@ const walking = MCFunction('walking', () => {
   old.Z.set(current.Z);
 
   ensure_motion();
-})
+});
 
 const mounted = MCFunction('mounted', () => {
   $('Store motion to scores for access');
@@ -216,7 +216,7 @@ const mounted = MCFunction('mounted', () => {
     data.get.entity('@s', 'Motion[2]', 1000);
 
   ensure_motion();
-})
+});
 
 /**
  * Get input directions from a player
