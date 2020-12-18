@@ -16,11 +16,8 @@ jobs:
         run: |
           npm i sandstone sandstone-cli
           npm run build
-          cp -r .pack/mountedwasd .
-
-      - name: Clear project files
-        run: |
           rm -rf !(LICENSE|README.md|.pack)
+          cp -r .pack/mountedwasd .
 
       - name: Add & Commit changes
         run: |
