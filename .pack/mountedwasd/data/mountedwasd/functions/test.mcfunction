@@ -1,2 +1,3 @@
 function mountedwasd:_wasd/get_input
-execute as @s[tag=mountedwasd.backward] run function mountedwasd:test/execute_as
+title @s actionbar ""
+execute as @s[tag=mountedwasd.is_moving] run function mountedwasd:test/execute_as
