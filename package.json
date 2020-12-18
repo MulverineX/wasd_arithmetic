@@ -18,7 +18,7 @@
     "publish": "tsc && npm publish",
     "watch": "sand watch",
     "build": "sand build",
-    "link": "start \"\" \".env\\link.lnk\""
+    "link": "cmd /c \"mklink /J C:\\Programs\\multimc\\instances\\1.16.3\\.minecraft\\saves\\NewWorld\\datapacks\\mountedwasd C:\\Users\\mulve\\Documents\\workspace\\minecraft\\sandstone\\mountedwasd\\master\\.pack\\mountedwasd\""
   },
   "license": "CC0-1.0",
   "peerDependencies": {
