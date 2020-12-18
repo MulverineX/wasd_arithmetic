@@ -30,8 +30,5 @@
   },
   "engines": {
     "node": ">=14.0.0"
-  },
-  "dependencies": {
-    "sandstone": "^0.7.1"
   }
 }
