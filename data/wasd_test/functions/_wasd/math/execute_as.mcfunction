@@ -1,0 +1,1 @@
+scoreboard players remove @s wasd._calc0 180000
