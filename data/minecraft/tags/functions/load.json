@@ -1,6 +1,6 @@
 {
-	"values": [
-		"mounted_wasd:load"
-	],
-	"replace": false
+  "replace": false,
+  "values": [
+    "mountedwasd:__init__"
+  ]
 }

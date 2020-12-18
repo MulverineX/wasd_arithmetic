@@ -1,0 +1,1 @@
+scoreboard players operation @s mtwasd._calc1 *= -1 sandstone_const
