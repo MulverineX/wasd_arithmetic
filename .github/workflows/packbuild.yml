@@ -1,0 +1,38 @@
+on:
+  push
+
+jobs:
+  build_pack:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source Git branch
+        uses: actions/checkout@v2
+        with:
+            ref: ${{ github.ref }}
+            fetch-depth: 0
+
+      - name: Build Pack from TS
+        run: |
+          npm install
+          npm run build
+          cp -r .pack/mountedwasd .
+
+      - name: Clear project files
+        run: |
+          rm -v !("LICENSE"|"README.md")
+          rm -rf .env .github .pack .sandstone build node_modules src
+
+      - name: Add & Commit changes
+        run: |
+          git config --local user.email 'action@github.com'
+          git config --local user.name 'GitHub Action'
+          git checkout generated
+          git add -A
+          git diff-index --quiet HEAD || git commit -m 'Updated Pack files'
+
+      - name: Push Changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
