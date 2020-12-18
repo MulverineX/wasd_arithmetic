@@ -5,13 +5,14 @@
   "scripts": {
     "watch": "sand watch",
     "build": "sand build",
-    "link": "cmd /c \"mklink /J C:\\Programs\\multimc\\instances\\1.16.3\\.minecraft\\saves\\NewWorld\\datapacks\\wasd_test C:\\Users\\mulve\\Documents\\workspace\\minecraft\\sandstone\\wasd_test\\master\\.pack\\wasd_test\""
+    "link": "cmd /c \"mklink /J C:\\Programs\\multimc\\instances\\1.16.3\\.minecraft\\saves\\NewWorld\\datapacks\\wasd_test C:\\Users\\mulve\\Documents\\workspace\\minecraft\\sandstone\\wasd\\example\\.pack\\wasd_test\""
   },
   "keywords": [],
   "author": "MulverineX",
   "license": "CC0-1.0",
   "dependencies": {
-    "sandstone": "^0.7.1"
+    "sandstone": "^0.7.1",
+    "smc-wasd": "^2.1.3"
   },
   "devDependencies": {
     "@types/node": "^14.14.13",
