@@ -1,2 +1,2 @@
 tag @s add mountedwasd._negate
-scoreboard players set if_result_5990 sandstone_cond 1
+scoreboard players set if_result_7016 sandstone_cond 1
