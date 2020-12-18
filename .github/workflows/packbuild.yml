@@ -14,8 +14,7 @@ jobs:
 
       - name: Build Pack from TS
         run: |
-          npm install
-          npm i sandstone-cli
+          npm i sandstone sandstone-cli
           npm run build
           cp -r .pack/mountedwasd .
 
