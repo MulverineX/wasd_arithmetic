@@ -1,10 +1,10 @@
 import { execute, title } from 'sandstone/commands';
 import { MCFunction, _ } from 'sandstone/core';
 import { loc, Selector } from 'sandstone/variables';
-import get_direction from '.';
+import get_direction, { is_mounted } from '.';
 import { hasLabel as is, newProperty, parse_id } from './utils';
 
-MCFunction('test', () => {
+MCFunction('test', () => { _.if(is_mounted, () => {
    const input = get_direction();
 
    title('@s').actionbar('');
@@ -12,9 +12,9 @@ MCFunction('test', () => {
    is(input.moving, () => {
       const direction = {
          // 'backward', 'backward_left', 'left', 'forward_left', 'forward', 'forward_right', 'right', 'backward_right'
-         arrow: [ '↓', '↙', '←','↖', '↑', '↗', '→', '↘' ],
+         arrow: [ '↓', '↙', '←', '↖', '↑', '↗', '→', '↘' ],
          bind:  [ 'S', 'AS', 'A', 'AW', 'W', 'DA', 'D', 'DS' ]
-      }
+      };
 
       const display_type = newProperty('display');
 
@@ -26,7 +26,12 @@ MCFunction('test', () => {
 
                const vector = input.local_vector(dir, 0.25);
 
-               execute.rotated(['~', '0']).as(Selector('@e', { type: 'minecraft:minecart', distance: [0, .5], limit: 1, sort: 'nearest' }))
+               execute.rotated(['~', '0']).as(Selector('@e', { 
+                     type: 'minecraft:minecart', 
+                     distance: [0, .5], 
+                     limit: 1, 
+                     sort: 'nearest'
+                  }))
                   .positionedAs('@s').runOne
                   .teleport('@s', loc(vector.X, 0, vector.Z));
             });
@@ -42,5 +47,5 @@ MCFunction('test', () => {
       _.if(display_type.equalTo(3), () => {
          directions((i, dir ) => `${direction.arrow[i]}; ${parse_id(dir)}; ${direction.bind[i]}`)
       });
-   })
-})
+   });
+})}, { runEachTick: true });

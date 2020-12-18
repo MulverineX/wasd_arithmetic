@@ -191,7 +191,7 @@ export const is_mounted = Predicate('is_mounted',{
   }
 }) 
 
-export default function get_input () {
+export default function get_input() {
   main();
   return input;
 }
