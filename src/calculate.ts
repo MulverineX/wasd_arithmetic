@@ -13,7 +13,7 @@ export default function (input: Direction) {
         vec_x = input.absolute.vector.X,
         vec_z = input.absolute.vector.Z;
 
-  const math = MCFunction('math', () => {
+  const math = MCFunction('_wasd/math', () => {
     $('# Get Rotation');
     execute.store.result.score(absolute_rotation).runOne.
       data.get.entity('@s', 'Rotation[0]', 1000);

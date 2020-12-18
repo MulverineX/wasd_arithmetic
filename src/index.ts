@@ -108,7 +108,7 @@ export class Direction {
 
 const input = new Direction();
 
-const main = MCFunction('get_direction', () => {
+const main = MCFunction('_wasd/get_direction', () => {
   $('Clear flags');
   input.score.set(0);
 
@@ -187,7 +187,7 @@ function ensure_motion() {
 const old =     { X: newProperty('ovec_x'), Z: newProperty('ovec_z') },
       current = { X: newProperty('cvec_x'), Z: newProperty('cvec_z') };
 
-const walking = MCFunction('walking', () => {
+const walking = MCFunction('_wasd/walking', () => {
   $('Store position to scores for access');
       
   execute.store.result.score(current.X).runOne.
@@ -206,7 +206,7 @@ const walking = MCFunction('walking', () => {
   ensure_motion();
 });
 
-const mounted = MCFunction('mounted', () => {
+const mounted = MCFunction('_wasd/mounted', () => {
   $('Store motion to scores for access');
 
   execute.store.result.score(input.absolute.vector.X).runOne.
