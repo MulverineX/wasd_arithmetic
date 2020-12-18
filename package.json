@@ -15,6 +15,7 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
+    "publish": "tsc && npm publish",
     "watch": "sand watch",
     "build": "sand build",
     "link": "start \"\" \".env\\link.lnk\""

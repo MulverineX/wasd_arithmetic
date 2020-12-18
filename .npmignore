@@ -1,9 +1,11 @@
-node_modules/
+.env/
+
+.github/
 
 .pack/
 
 .sandstone/
 
-.env/
+node_modules/
 
-.github/
+sandstone.config.ts
