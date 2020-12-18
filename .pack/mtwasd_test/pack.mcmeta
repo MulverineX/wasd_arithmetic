@@ -1,0 +1,13 @@
+{
+  "pack": {
+    "pack_format": 6,
+    "description": [
+      "A ",
+      {
+        "text": "Sandstone",
+        "color": "gold"
+      },
+      " data pack."
+    ]
+  }
+}

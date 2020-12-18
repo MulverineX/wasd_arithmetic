@@ -12,7 +12,7 @@
   "license": "CC0-1.0",
   "dependencies": {
     "sandstone": "^0.7.1",
-    "smc-mountedwasd": "^2.0.0"
+    "smc-mountedwasd": "^2.0.1"
   },
   "devDependencies": {
     "@types/node": "^14.14.13",

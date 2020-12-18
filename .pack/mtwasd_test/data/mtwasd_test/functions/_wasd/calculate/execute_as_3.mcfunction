@@ -1,0 +1,1 @@
+scoreboard players remove @s mtwasd._calc0 180000
