@@ -1,8 +1,0 @@
-{
-  "pack": {
-    "pack_format": 6,
-    "description": [
-      "A data pack library for detecting WASD input while mounted"
-    ]
-  }
-}
