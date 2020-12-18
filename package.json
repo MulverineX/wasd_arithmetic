@@ -1,5 +1,5 @@
 {
-  "name": "mountedwasd",
+  "name": "mountedwasd-example",
   "version": "1.0.0",
   "description": "A data pack created with Sandstone",
   "scripts": {
@@ -8,8 +8,8 @@
     "link": "start \"\" \".env\\link.lnk\""
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "MulverineX",
+  "license": "CC0-1.0",
   "dependencies": {
     "sandstone": "^0.7.1"
   },

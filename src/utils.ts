@@ -2,8 +2,8 @@ import { execute, tag } from "sandstone/commands";
 import { createObjective, Selector } from "sandstone/variables";
 
 const namespace = {
-  full: 'mountedwasd',
-  short: 'mtwasd' 
+  full: 'mtwasd_test',
+  short: 'mtwasdt' 
 };
 
 /**
