@@ -13,4 +13,3 @@ scoreboard objectives add mtwasd.loc_rot dummy
 scoreboard objectives add mtwasd._calc0 dummy
 scoreboard objectives add mtwasd._calc1 dummy
 scoreboard objectives add sandstone_cond dummy "Sandstone Conditions"
-scoreboard objectives add mtwasd.display dummy

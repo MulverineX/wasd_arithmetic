@@ -108,7 +108,7 @@ export class Direction {
 
 const input = new Direction();
 
-export const main = MCFunction('_wasd/get_input', () => {
+const main = MCFunction('_wasd/get_input', () => {
   $('Clear flags')
   input.score.set(0);
 

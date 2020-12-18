@@ -1,16 +1,26 @@
 {
-  "name": "mountedwasd",
-  "version": "1.0.0",
-  "description": "A data pack created with Sandstone",
+  "name": "smc-mountedwasd",
+  "version": "2.0.0",
+  "description": "A Sandstone data pack library for detecting WASD input while mounted",
+  "contributors": [
+    {
+      "name": "Onnowhere",
+      "url": "https://github.com/onnowhere"
+    },
+    {
+      "name": "MulverineX",
+      "url": "https://github.com/MulverineX"
+    }
+  ],
+  "index": "build/index.js",
+  "types": "build/index.d.ts",
   "scripts": {
     "watch": "sand watch",
     "build": "sand build",
     "link": "start \"\" \".env\\link.lnk\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
+  "license": "CC0-1.0",
+  "peerDependencies": {
     "sandstone": "^0.7.1"
   },
   "devDependencies": {
