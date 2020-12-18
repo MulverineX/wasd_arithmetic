@@ -16,18 +16,15 @@ jobs:
         run: |
           npm i sandstone sandstone-cli
           npm run build
-          git clone https://github.com/MulverineX/mountedwasd gen
-          cd gen
-          git checkout generated
-          rm -rf data/* pack.mcmeta
-          mv ../.pack/mountedwasd/* data
+          mv .pack/mountedwasd/* .
 
       - name: Add & Commit changes
         run: |
-          cd gen
+          git checkout generated
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'
-          git add -A
+          git add -A ./data
+          git add pack.mcmeta
           git diff-index --quiet HEAD || git commit -m 'Updated Pack files'
 
       - name: Push Changes
