@@ -15,12 +15,13 @@ jobs:
       - name: Build Pack from TS
         run: |
           npm install
+          npm i sandstone-cli
           npm run build
           cp -r .pack/mountedwasd .
 
       - name: Clear project files
         run: |
-          rm -v !("LICENSE"|"README.md")
+          rm -v !('LICENSE'|'README.md')
           rm -rf .env .github .pack .sandstone build node_modules src
 
       - name: Add & Commit changes
