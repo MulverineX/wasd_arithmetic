@@ -1,5 +1,5 @@
-# mountedwasd example
-An example Sandstone project using mountedwasd, mount something to try it out.
+# wasd example
+An example Sandstone project using smc-wasd.
 
 ## Sandstone
 To build the datapack, run:

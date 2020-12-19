@@ -1,12 +1,11 @@
 import { execute, title } from 'sandstone/commands';
 import { MCFunction, _ } from 'sandstone/core';
 import { loc, Selector } from 'sandstone/variables';
-import get_direction, { is_mounted } from 'smc-wasd';
+import get_direction from 'smc-wasd';
 import { hasLabel as is, newProperty, parse_id } from './utils';
 
-MCFunction('test', () => { execute.as(Selector('@a', { predicate: is_mounted })).at('@s').run(() => {
-
-   const input = get_direction('mounted');
+MCFunction('test', () => { execute.as('@a').at('@s').run(() => {
+   const input = get_direction();
 
    title('@s').actionbar('Still');
 
