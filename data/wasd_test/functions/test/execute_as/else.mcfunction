@@ -1,0 +1,1 @@
+function wasd_test:_wasd/walking

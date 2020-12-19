@@ -1,1 +1,1 @@
-execute as @a[predicate=wasd_test:is_mounted] at @s run function wasd_test:test/execute_as
+execute as @a at @s run function wasd_test:test/execute_as

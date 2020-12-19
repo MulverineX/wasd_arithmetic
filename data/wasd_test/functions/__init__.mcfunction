@@ -1,3 +1,4 @@
+function wasd_test:test/execute_as/__await_flow
 scoreboard objectives add sandstone_const dummy [{"text": "Sandstone Constants"}]
 scoreboard players set 1000 sandstone_const 1000
 scoreboard players set 4 sandstone_const 4

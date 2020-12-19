@@ -1,3 +1,2 @@
-tag @s add wasd.is_moving
-function wasd_test:_wasd/get_direction
-scoreboard players set if_result_6697 sandstone_cond 1
+function wasd_test:_wasd/mounted
+scoreboard players set if_result_5818 sandstone_cond 1
