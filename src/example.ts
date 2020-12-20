@@ -1,51 +1,56 @@
 import { execute, title } from 'sandstone/commands';
 import { MCFunction, _ } from 'sandstone/core';
 import { loc, Selector } from 'sandstone/variables';
-import get_direction from 'smc-wasd';
-import { hasLabel as is, newProperty, parse_id } from './utils';
+import get_direction, { Direction, is_mounted } from 'smc-wasd';
+import { newLabel, hasLabel as is, newProperty, parse_id } from './utils';
 
-MCFunction('test', () => { execute.as('@a').at('@s').run(() => {
-   const input = get_direction();
+MCFunction('main', () => { execute.as('@a').at('@s').run(() => {
+   const direction = {
+      // 'backward', 'backward_left', 'left', 'forward_left', 'forward', 'forward_right', 'right', 'backward_right'
+      arrow: [ '↓', '↙', '←', '↖', '↑', '↗', '→', '↘' ],
+      bind:  [ 'S', 'AS', 'A', 'AW', 'W', 'DA', 'D', 'DS' ]
+   };
 
-   title('@s').actionbar('Still');
+   function directions(input: Direction, display: (i: number, dir: string) => string) {
+      for (const [ i, dir ] of input.directions.entries()) {
 
-   is(input.moving, () => {
-      const direction = {
-         // 'backward', 'backward_left', 'left', 'forward_left', 'forward', 'forward_right', 'right', 'backward_right'
-         arrow: [ '↓', '↙', '←', '↖', '↑', '↗', '→', '↘' ],
-         bind:  [ 'S', 'AS', 'A', 'AW', 'W', 'DA', 'D', 'DS' ]
-      };
+         _.if(input.exact(dir), () => {
+            title('@s').actionbar({ text: display(i, dir), color: 'gold', bold: true });
 
-      const display_type = newProperty('display');
+            const vector = input.local_vector(dir, 0.25);
 
-      function directions(display: (i: number, dir: string) => string) {
-         for (const [ i, dir ] of input.directions.entries()) {
-
-            _.if(input.exact(dir), () => {
-               title('@s').actionbar({ text: display(i, dir), color: 'gold', bold: true });
-
-               const vector = input.local_vector(dir, 0.25);
-
-               execute.rotated(['~', '0']).as(Selector('@e', { 
-                     type: 'minecraft:minecart', 
-                     distance: [0, .5], 
-                     limit: 1, 
-                     sort: 'nearest'
-                  }))
-                  .positionedAs('@s').runOne
-                  .teleport('@s', loc(vector.X, 0, vector.Z));
-            });
-         }
+            execute.rotated(['~', '0']).as(Selector('@e', { 
+                  type: 'minecraft:minecart', 
+                  distance: [0, .5], 
+                  limit: 1, 
+                  sort: 'nearest'
+               }))
+               .positionedAs('@s').runOne
+               .teleport('@s', loc(vector.X, 0, vector.Z));
+         });
       }
+   }
 
-      _.if(display_type.equalTo(0), () => directions((i, dir) => parse_id(dir)));
-      
-      _.if(display_type.equalTo(1), () => directions(i => direction.bind[i]));
+   const display_type = newProperty('display');
 
-      _.if(display_type.equalTo(2), () => directions(i => direction.arrow[i]));
+   const test = (type: 'mounted' | 'walking') => {
+      const input = get_direction(type);
 
-      _.if(display_type.equalTo(3), () => {
-         directions((i, dir ) => `${direction.arrow[i]}; ${parse_id(dir)}; ${direction.bind[i]}`)
+      title('@s').actionbar('Still');
+
+      is(input.moving, () => {
+         _.if(display_type.equalTo(0), () => directions(input, (i, dir) => parse_id(dir)));
+            
+         _.if(display_type.equalTo(1), () => directions(input, i => direction.bind[i]));
+   
+         _.if(display_type.equalTo(2), () => directions(input, i => direction.arrow[i]));
+   
+         _.if(display_type.equalTo(3), () => {
+            directions(input, (i, dir ) => `${direction.arrow[i]}; ${parse_id(dir)}; ${direction.bind[i]}`)
+         });
       });
-   });
+   }
+
+   _.if(is_mounted, () => test('mounted'))
+   .else(() => is(newLabel('do_unmounted'), () => test('walking')));
 })}, { runEachTick: true });
