@@ -1,2 +1,2 @@
 tag @s add wasd._negate
-scoreboard players set if_result_9132 sandstone_cond 1
+scoreboard players set if_result_392 sandstone_cond 1

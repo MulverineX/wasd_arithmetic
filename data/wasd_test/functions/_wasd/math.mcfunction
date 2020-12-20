@@ -4,7 +4,7 @@ scoreboard players add @s[scores={wasd.abs_rot=..0}] wasd.abs_rot 360000
 # # Calculate rotation vector
 scoreboard players operation @s wasd._calc0 = @s wasd.abs_rot
 # Calculate sine using Bhaskara I's approx.
-scoreboard players set if_result_9977 sandstone_cond 0
+scoreboard players set if_result_4301 sandstone_cond 0
 execute if score @s wasd._calc0 matches 180000.. run function wasd_test:_wasd/math/if
 execute as @s[tag=wasd._negate] run function wasd_test:_wasd/math/execute_as
 scoreboard players set @s wasd._calc1 180000
@@ -26,7 +26,7 @@ scoreboard players operation @s wasd._calc0 = @s wasd.abs_rot
 # Calculate cosine ~ `cos(x)=sin(x+90)`
 scoreboard players add @s wasd._calc0 90000
 # Calculate sine using Bhaskara I's approx.
-scoreboard players set if_result_9132 sandstone_cond 0
+scoreboard players set if_result_392 sandstone_cond 0
 execute if score @s wasd._calc0 matches 180000.. run function wasd_test:_wasd/math/if_2
 execute as @s[tag=wasd._negate] run function wasd_test:_wasd/math/execute_as_3
 scoreboard players set @s wasd._calc1 180000
@@ -49,7 +49,7 @@ scoreboard players operation @s wasd._calc0 *= dxrot wasd._calc0
 scoreboard players operation temp0 wasd._calc0 *= dzrot wasd._calc0
 scoreboard players operation @s wasd._calc0 -= temp0 wasd._calc0
 scoreboard players operation @s wasd._calc0 *= 10 sandstone_const
-scoreboard players set if_result_1204 sandstone_cond 0
+scoreboard players set if_result_6950 sandstone_cond 0
 execute if score @s wasd._calc0 matches ..-1 run function wasd_test:_wasd/math/if_3
 # # Calculate determinant
 scoreboard players operation @s wasd._calc1 = @s wasd.vec_x
@@ -58,16 +58,16 @@ scoreboard players operation @s wasd._calc1 *= dxrot wasd._calc0
 scoreboard players operation temp0 wasd._calc0 *= dzrot wasd._calc0
 scoreboard players operation @s wasd._calc1 += temp0 wasd._calc0
 # 
-scoreboard players set if_result_5336 sandstone_cond 0
+scoreboard players set if_result_3927 sandstone_cond 0
 execute if score @s wasd._calc1 matches 1.. run function wasd_test:_wasd/math/if_4
-execute if score if_result_5336 sandstone_cond matches 0 if score @s wasd._calc1 matches ..-1 run function wasd_test:_wasd/math/else_if
+execute if score if_result_3927 sandstone_cond matches 0 if score @s wasd._calc1 matches ..-1 run function wasd_test:_wasd/math/else_if
 # # Calculate Local Rotation
 # Calculate arc tangent (atan2)
 scoreboard players operation @s wasd._calc0 /= @s wasd._calc1
-scoreboard players set if_result_7357 sandstone_cond 0
+scoreboard players set if_result_9314 sandstone_cond 0
 execute if score @s wasd._calc0 matches ..-1 run function wasd_test:_wasd/math/if_5
 execute as @s[tag=wasd._flip] run function wasd_test:_wasd/math/execute_as_5
-scoreboard players set if_result_9675 sandstone_cond 0
+scoreboard players set if_result_9143 sandstone_cond 0
 execute if score @s wasd._calc0 matches 11.. run function wasd_test:_wasd/math/if_6
 execute as @s[tag=wasd._invert] run function wasd_test:_wasd/math/execute_as_6
 scoreboard players operation temp0 wasd._calc0 = @s wasd._calc0

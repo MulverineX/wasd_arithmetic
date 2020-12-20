@@ -1,1 +1,0 @@
-execute as @a at @s run function wasd_test:test/execute_as
