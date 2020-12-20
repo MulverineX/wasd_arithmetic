@@ -1,2 +1,2 @@
 tag @s add wasd.backward
-scoreboard players set if_result_798 sandstone_cond 1
+scoreboard players set if_result_1539 sandstone_cond 1
