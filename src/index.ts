@@ -36,13 +36,22 @@ export class Direction {
    * Absolute Rotation normalized to 0-360(000)
    */
   public local_rotation = newProperty('loc_rot');
-      moving = newLabel('is_moving');
 
   /** 
    * The 8 possible directions
    */
   public directions = directions;
-  
+
+  /**
+   * Whether the player is moving
+   */
+  public moving = newLabel('is_moving');
+
+  /**
+   * Whether the player is mounted
+   */
+  public mounted = newLabel('is_mounted');
+
   /**
    * The 4 cardinal directions
    */
@@ -188,6 +197,8 @@ const old =     { X: newProperty('ovec_x'), Z: newProperty('ovec_z') },
       current = { X: newProperty('cvec_x'), Z: newProperty('cvec_z') };
 
 const walking = MCFunction('_wasd/walking', () => {
+  removeLabel(input.mounted);
+
   $('Store position to scores for access');
       
   execute.store.result.score(current.X).runOne.
@@ -207,6 +218,8 @@ const walking = MCFunction('_wasd/walking', () => {
 });
 
 const mounted = MCFunction('_wasd/mounted', () => {
+  addLabel(input.mounted);
+
   $('Store motion to scores for access');
 
   execute.store.result.score(input.absolute.vector.X).runOne.
