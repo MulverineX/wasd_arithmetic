@@ -1,6 +1,6 @@
 {
   "name": "smc-wasd",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "A Sandstone data pack library for detecting WASD input",
   "contributors": [
     {
