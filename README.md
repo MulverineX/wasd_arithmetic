@@ -2,14 +2,13 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-A Minecraft Datapack. Detection of local direction input (ie wasd) for when the player is on a mount.
+A Minecraft Datapack. Detection of local direction input (eg wasd) for when the player is on a mount.
 
 Usage:
-Run mounted_wasd:main as the player to get movement information
-ie. `execute as @a if predicate mountedwasd:predicates/is_mounted run function mounted_wasd:_wasd/get_input`
+`execute as @a if predicate wasd:predicates/is_mounted run function wasd:_wasd/mounted`
 
-This will give the player an exclusive input score & inclusive input tags all described in mounted_wasd:output
-ie. `execute as @a[tag=mtwasd.forward] run title @s title {"text":"Forward"}` will display a title for mounted players that are inputting forward movement, even if it includes left or right
+This will give the player an exclusive input score & inclusive input tags all described in wasd:\_wasd/get_direction
+ie. `execute as @a[tag=wasd.forward] run title @s title {"text":"Forward"}` will display a title for mounted players that are inputting forward movement, even if it includes left or right
 
 ## Contributors ✨
 
