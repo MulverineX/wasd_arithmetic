@@ -2,7 +2,7 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-A Minecraft Datapack. Detection of local direction input (eg wasd) for when the player is on a mount.
+A Minecraft Datapack. Detection of local direction input (eg wasd) from a player.
 
 Usage:
 `execute as @a if predicate wasd:predicates/is_mounted run function wasd:_wasd/mounted`
