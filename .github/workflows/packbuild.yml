@@ -15,6 +15,7 @@ jobs:
       - name: Build Pack from TS
         run: |
           npm i
+          npm i sandstone sandstone-cli
           npm run build
 
       - name: Add & Commit changes
