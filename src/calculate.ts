@@ -1,8 +1,9 @@
 import { comment as $, execute, scoreboard } from 'sandstone/commands';
 import { MCFunction, _ } from 'sandstone/core';
 import { Selector } from 'sandstone/variables';
+import { addLabel, hasLabel as is, removeLabel } from 'smc-label';
 import { Direction } from '.';
-import { newProperty, newLabel, addLabel, removeLabel, hasLabel as is } from './utils';
+import { newProperty, newLabel } from './utils';
 
 const scale = (x: number) => x*1000;
 
@@ -15,9 +16,9 @@ export default function (input: Direction) {
 
   const math = MCFunction('_wasd/math', () => {
     $('# Get Rotation');
-    execute.store.result.score(absolute_rotation).runOne.
+    execute.store.result.score(absolute_rotation).run.
       data.get.entity('@s', 'Rotation[0]', 1000);
-    
+
     scoreboard.players.add(`@s[scores={${absolute_rotation.objective.name}=..0}]`, absolute_rotation.objective, scale(360));
 
     const negate = newLabel('_negate');
@@ -31,7 +32,7 @@ export default function (input: Direction) {
 
       _.if(calculate[0].greaterOrEqualThan(scale(180)), () => { addLabel(negate) });
 
-      is(negate, () => calculate[0].remove(scale(180)));
+      _.if(is(negate), () => { calculate[0].remove(scale(180)) });
 
       calculate[1].set(scale(180))
                   .remove(calculate[0]).divide(1000)
@@ -44,7 +45,7 @@ export default function (input: Direction) {
       calculate[0].divide(1000);
       calculate[1].divide(calculate[0]);
 
-      is(negate, () => calculate[1].multiply(-1));
+      _.if(is(negate), () => { calculate[1].multiply(-1) });
 
       removeLabel(negate);
     }
@@ -82,7 +83,7 @@ export default function (input: Direction) {
     calculate[0].remove(temp[0]);
 
     calculate[0].multiply(10);
-    _.if(calculate[0].lowerOrEqualThan(-1), () => addLabel(negate));
+    _.if(calculate[0].lowerOrEqualThan(-1), () => { addLabel(negate) });
 
     $('# Calculate determinant')
     calculate[1].set(vec_x);
@@ -94,25 +95,25 @@ export default function (input: Direction) {
 
     $('');
 
-    _.if(calculate[1].greaterOrEqualThan(1), () => addLabel(input.forward))
+    _.if(calculate[1].greaterOrEqualThan(1), () => { addLabel(input.forward) })
 
-    .elseIf(calculate[1].lowerOrEqualThan(-1), () => addLabel(input.backward))
+    .elseIf(calculate[1].lowerOrEqualThan(-1), () => addLabel(input.backward));
 
     $('# Calculate Local Rotation')
     $('Calculate arc tangent (atan2)')
     calculate[0].divide(calculate[1])
 
     const flip = newLabel('_flip');
-    _.if(calculate[0].lowerOrEqualThan(-1), () => addLabel(flip));
+    _.if(calculate[0].lowerOrEqualThan(-1), () => { addLabel(flip) });
 
-    is(flip, () => calculate[0].multiply(-1));
+    _.if(is(flip), () => { calculate[0].multiply(-1) });
 
     const invert = newLabel('_invert');
-    _.if(calculate[0].greaterOrEqualThan(11), () => addLabel(invert));
+    _.if(calculate[0].greaterOrEqualThan(11), () => { addLabel(invert) });
 
-    is(invert, () => {
+    _.if(is(invert), () => {
       calculate[1].set(calculate[0]);
-      
+
       calculate[0].set(100).divide(calculate[1]);
     });
 
@@ -127,21 +128,21 @@ export default function (input: Direction) {
 
     calculate[0].multiply(temp[1]);
 
-    is(invert, () => {
+    _.if(is(invert), () => {
       calculate[1].set(calculate[0]);
 
       calculate[0].set(900)
                   .remove(calculate[1]);
     })
 
-    is(flip, () => {
+    _.if(is(flip), () => {
       calculate[1].set(calculate[0]);
 
       calculate[0].set(1800)
                   .remove(calculate[1]);
     })
 
-    is(negate, () => {
+    _.if(is(negate), () => {
       calculate[1].set(calculate[0]);
 
       calculate[0].set(1800)
@@ -149,14 +150,14 @@ export default function (input: Direction) {
     })
 
     scoreboard.players.set(Selector('@s', {
-        tag: input.forward.raw_name,
+        tag: input.forward.name,
         scores: { [calculate[0].objective.name]: -1800 }
       }), 
       calculate[0].objective, 0
     );
 
     scoreboard.players.set(Selector('@s', {
-        tag: input.backward.raw_name,
+        tag: input.backward.name,
         scores: { [calculate[0].objective.name]: 0 }
       }), 
       calculate[0].objective, 1800
