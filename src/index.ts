@@ -237,7 +237,7 @@ const mounted = MCFunction('_wasd/mounted', () => {
  * @param mode Define if mode of input is assured
  */
 export default function (mode: 'walking' | 'mounted' | false = false) {
-  if (!mode) _.if(is_mounted, () => mounted()).else(() => walking() as any);
+  if (!mode) _.if(is_mounted, () => mounted()).else(() => walking());
   else if (mode === 'walking') walking();
   else mounted();
 
