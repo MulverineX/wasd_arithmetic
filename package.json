@@ -12,7 +12,7 @@
   "license": "CC0-1.0",
   "dependencies": {
     "sandstone": "^0.8.7",
-    "smc-label": "^1.0.0",
+    "smc-label": "^1.0.1",
     "smc-wasd": "^2.1.7"
   },
   "devDependencies": {
