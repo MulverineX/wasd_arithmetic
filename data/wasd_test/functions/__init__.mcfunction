@@ -16,5 +16,5 @@ scoreboard objectives add wasd.cvec_x dummy
 scoreboard objectives add wasd.cvec_z dummy
 scoreboard objectives add wasd._calc0 dummy
 scoreboard objectives add wasd._calc1 dummy
-scoreboard objectives add sandstone_cond dummy "Sandstone Conditions"
+scoreboard objectives add sandstone dummy [{"text": "Sandstone", "color": "gold"}, " internals"]
 scoreboard objectives add wasdt.display dummy

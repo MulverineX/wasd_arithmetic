@@ -1,3 +1,4 @@
-tag @s add wasd.is_moving
-function wasd_test:_wasd/get_direction
-scoreboard players set if_result_3554 sandstone_cond 1
+execute if score @s wasdt.display matches 0 run function wasd_test:main/execute_as/if/if/if
+execute if score @s wasdt.display matches 1 run function wasd_test:main/execute_as/if/if/if_2
+execute if score @s wasdt.display matches 2 run function wasd_test:main/execute_as/if/if/if_3
+execute if score @s wasdt.display matches 3 run function wasd_test:main/execute_as/if/if/if_4

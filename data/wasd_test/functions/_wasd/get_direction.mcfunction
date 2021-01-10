@@ -1,3 +1,4 @@
+tag @s add wasd.is_moving
 # Clear flags
 scoreboard players set @s wasd.loc_dir 0
 tag @s remove wasd.forward

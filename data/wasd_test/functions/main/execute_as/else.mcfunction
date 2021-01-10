@@ -1,1 +1,0 @@
-execute as @s[tag=wasd_test.do_unmounted] run function wasd_test:main/execute_as/else/execute_as
