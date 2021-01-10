@@ -1,6 +1,5 @@
-import { comment as $, execute, scoreboard } from 'sandstone/commands';
+import { comment as $, execute } from 'sandstone/commands';
 import { MCFunction, _ } from 'sandstone/core';
-import { Selector } from 'sandstone/variables';
 import { addLabel, hasLabel as is, removeLabel } from 'smc-label';
 import { Direction } from '.';
 import { newProperty, newLabel } from './utils';
@@ -19,7 +18,7 @@ export default function (input: Direction) {
     execute.store.result.score(absolute_rotation).run.
       data.get.entity('@s', 'Rotation[0]', 1000);
 
-    scoreboard.players.add(`@s[scores={${absolute_rotation.objective.name}=..0}]`, absolute_rotation.objective, scale(360));
+    _.if(absolute_rotation.matches([null, 0]), () => { absolute_rotation.add(scale(360)) })
 
     const negate = newLabel('_negate');
 
@@ -149,19 +148,9 @@ export default function (input: Direction) {
                   .remove(calculate[1]).multiply(-1);
     })
 
-    scoreboard.players.set(Selector('@s', {
-        tag: input.forward.name,
-        scores: { [calculate[0].objective.name]: -1800 }
-      }), 
-      calculate[0].objective, 0
-    );
+    _.if(_.and(calculate[0].equalTo(-1800), is(input.forward)), () => { calculate[0].set(0) });
 
-    scoreboard.players.set(Selector('@s', {
-        tag: input.backward.name,
-        scores: { [calculate[0].objective.name]: 0 }
-      }), 
-      calculate[0].objective, 1800
-    );
+    _.if(_.and(calculate[0].equalTo(0), is(input.backward)), () => { calculate[0].set(1800) });
 
     removeLabel(flip);
     removeLabel(invert);

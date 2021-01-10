@@ -119,6 +119,8 @@ export class Direction {
 const input = new Direction();
 
 const main = MCFunction('_wasd/get_direction', () => {
+  addLabel(input.moving);
+
   $('Clear flags');
   input.score.set(0);
 
@@ -135,8 +137,8 @@ const main = MCFunction('_wasd/get_direction', () => {
 
   $('# Exclusive Inputs');
   $('Backward');
-  raw(`execute if score @s ${local_rotation.objective.name} matches 1574..1800 run`,
-      `scoreboard players set @s ${input.score.objective.name} 1`);
+  _.if(local_rotation.matches([1574, 1800]), () => { input.score.set(1) });
+
   for (let i in input.directions) {
     const first = i == '0';
 
@@ -150,8 +152,7 @@ const main = MCFunction('_wasd/get_direction', () => {
 
     const score = parseInt(i) + 1;
 
-    raw(`execute if score @s ${local_rotation.objective.name} matches ${angle_a*10}..${angle_b*10} run`,
-      `scoreboard players set @s ${input.score.objective.name} ${score}`);
+    _.if(local_rotation.matches([angle_a*10, angle_b*10]), () => { input.score.set(score) });
 
     alt = !alt;
   }
@@ -159,17 +160,18 @@ const main = MCFunction('_wasd/get_direction', () => {
   $('');
   $('# Inclusive Inputs');
   $('Backward')
-  const backward = `tag @s add ${input.backward.name}`;
 
-  raw(`execute if score @s ${input.score.objective.name} matches 8 run`, backward);
-  raw(`execute if score @s ${input.score.objective.name} matches 1..2 run`, backward);
+  // _.or is broken
+  _.if(input.score.equalTo(8), () => { addLabel(input.backward) });
+  _.if(input.score.matches([1, 2]), () => { addLabel(input.backward) });
 
   let num = 2;
 
   for (const cardinal of input.cardinals.slice(1).map(x => input[x])) {
     $(parse_id(cardinal.name.split('.')[1]));
-    raw(`execute if score @s ${input.score.objective.name} matches ${num}..${num + 2} run`,
-      `tag @s add ${cardinal.name}`);
+
+    _.if(input.score.matches([num, num + 2]), () => { addLabel(cardinal) });
+
     num += 2;
   }
 });
@@ -187,11 +189,7 @@ function ensure_motion() {
   _.if(_.not(_.and(
     input.absolute.vector.X.equalTo(0), 
     input.absolute.vector.Z.equalTo(0)
-  )), () => {
-    addLabel(input.moving);
-
-    main();
-  });
+  )), () => main());
 }
 
 const old =     { X: newProperty('ovec_x'), Z: newProperty('ovec_z') },
