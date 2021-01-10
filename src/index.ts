@@ -1,4 +1,4 @@
-import { comment as $, execute, raw } from 'sandstone/commands';
+import { comment as $, execute } from 'sandstone/commands';
 import { MCFunction, Predicate, _ } from 'sandstone/core';
 import { addLabel, removeLabel } from 'smc-label';
 import calculate from './calculate';
