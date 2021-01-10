@@ -2,13 +2,13 @@ import { comment as $, execute } from 'sandstone/commands';
 import { MCFunction, _ } from 'sandstone/core';
 import { addLabel, hasLabel as is, removeLabel } from 'smc-label';
 import { Direction } from '.';
-import { newProperty, newLabel } from './utils';
+import { newScore, newLabel } from './utils';
 
 const scale = (x: number) => x*1000;
 
 export default function (input: Direction) {
 
-  const calculate = [ newProperty('_calc0'), newProperty('_calc1') ],
+  const calculate = [ newScore('_calc0'), newScore('_calc1') ],
         absolute_rotation = input.absolute.rotation,
         vec_x = input.absolute.vector.X,
         vec_z = input.absolute.vector.Z;

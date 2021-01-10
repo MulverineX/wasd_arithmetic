@@ -2,7 +2,7 @@ import { comment as $, execute } from 'sandstone/commands';
 import { MCFunction, Predicate, _ } from 'sandstone/core';
 import { addLabel, removeLabel } from 'smc-label';
 import calculate from './calculate';
-import { newProperty, newLabel, parse_id } from './utils';
+import { newScore, newLabel, parse_id } from './utils';
 
 
 const directions = [ 'backward', 'backward_left', 'left', 'forward_left', 'forward', 'forward_right', 'right', 'backward_right' ] as const;
@@ -14,7 +14,7 @@ export class Direction {
   /**
    * Exclusive direction score
    */
-  public score = newProperty('loc_dir');
+  public score = newScore('loc_dir');
 
   /**
    * Absolute values
@@ -23,20 +23,20 @@ export class Direction {
     /**
      * Absolute Rotation normalized to 0-360(000)
      */
-    rotation: newProperty('abs_rot'),
+    rotation: newScore('abs_rot'),
     /**
      * Absolute X & Z Motion vector
      */
     vector: {
-      X: newProperty('vec_x'),
-      Z: newProperty('vec_z')
+      X: newScore('vec_x'),
+      Z: newScore('vec_z')
     }
   }
 
   /**
    * Absolute Rotation normalized to 0-360(000)
    */
-  public local_rotation = newProperty('loc_rot');
+  public local_rotation = newScore('loc_rot');
 
   /** 
    * The 8 possible directions
@@ -192,8 +192,8 @@ function ensure_motion() {
   )), () => main());
 }
 
-const old =     { X: newProperty('ovec_x'), Z: newProperty('ovec_z') },
-      current = { X: newProperty('cvec_x'), Z: newProperty('cvec_z') };
+const old =     { X: newScore('ovec_x'), Z: newScore('ovec_z') },
+      current = { X: newScore('cvec_x'), Z: newScore('cvec_z') };
 
 const walking = MCFunction('_wasd/walking', () => {
   removeLabel(input.mounted);
