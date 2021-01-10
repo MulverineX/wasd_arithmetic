@@ -7,7 +7,7 @@ const namespace = { full: 'wasd', short: 'wasd' };
  * Creates a new label
  * @param label Label/tag name
  */
-export function newLabel(label: string) {
+export function newLabel (label: string) {
   return createLabel(`${namespace.full}.${label}`);
 }
 
@@ -16,13 +16,11 @@ export function newLabel(label: string) {
  * @param name Objective name
  * @param type Objective type
  */
-export function newProperty (name: string, type = 'dummy') {
+export function newScore (name: string, type = 'dummy') {
   return createObjective(`${namespace.short}.${name}`, type).ScoreHolder('@s');
 }
 
-function capitalize (s: string) {
-  return s.charAt(0).toUpperCase() + s.slice(1);
-}
+const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 /**
  * Parses an id into a header (capitalizes and spaces)
