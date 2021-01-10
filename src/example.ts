@@ -3,7 +3,7 @@ import { MCFunction, _ } from 'sandstone/core';
 import { loc, Selector } from 'sandstone/variables';
 import { hasLabel as is } from 'smc-label';
 import get_direction, { Direction, is_mounted } from 'smc-wasd';
-import { newLabel, newProperty, parse_id } from './utils';
+import { newLabel, newScore, parse_id } from './utils';
 
 MCFunction('main', () => { execute.as('@a').at('@s').run(() => {
    const direction = {
@@ -26,27 +26,27 @@ MCFunction('main', () => { execute.as('@a').at('@s').run(() => {
                   limit: 1, 
                   sort: 'nearest'
                }))
-               .positionedAs('@s').runOne
+               .positionedAs('@s').run
                .teleport('@s', loc(vector.X, 0, vector.Z));
          });
       }
    }
 
-   const display_type = newProperty('display');
+   const display_type = newScore('display');
 
-   const test = (type: 'mounted' | 'walking') => {
+   function test (type: 'mounted' | 'walking') {
       const input = get_direction(type);
 
       title('@s').actionbar('Still');
 
       _.if(is(input.moving), () => {
-         _.if(display_type.equalTo(0), () => directions(input, (i, dir) => parse_id(dir)))
+         _.if(display_type.equalTo(0), () => directions(input, (i, dir) => parse_id(dir)));
 
-         .elseIf(display_type.equalTo(1), () => directions(input, i => direction.bind[i]))
+         _.if(display_type.equalTo(1), () => directions(input, i => direction.bind[i]));
 
-         .elseIf(display_type.equalTo(2), () => directions(input, i => direction.arrow[i]))
+         _.if(display_type.equalTo(2), () => directions(input, i => direction.arrow[i]));
 
-         .elseIf(display_type.equalTo(3), () => {
+         _.if(display_type.equalTo(3), () => {
             directions(input, (i, dir ) => `${direction.arrow[i]}; ${parse_id(dir)}; ${direction.bind[i]}`)
          });
       });

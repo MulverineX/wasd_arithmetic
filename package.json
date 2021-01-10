@@ -11,9 +11,9 @@
   "author": "MulverineX",
   "license": "CC0-1.0",
   "dependencies": {
-    "sandstone": "^0.8.7",
-    "smc-label": "^1.0.1",
-    "smc-wasd": "^2.1.7"
+    "sandstone": "^0.8.8",
+    "smc-label": "^1.0.5",
+    "smc-wasd": "^2.2.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.13",
